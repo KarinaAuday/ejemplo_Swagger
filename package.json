@@ -1,0 +1,17 @@
+{
+  "name": "ejemplo-swagger",
+  "version": "1.0.0",
+  "description": "Ejemplo didáctico de API REST con Swagger - ORT",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "swagger": "node swagger.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "swagger-autogen": "^2.23.7"
+  }
+}

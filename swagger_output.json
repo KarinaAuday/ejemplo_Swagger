@@ -1,0 +1,131 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API de Alumnos - ORT",
+    "description": "Ejemplo didáctico de documentación de APIs REST con Swagger. CRUD completo de alumnos universitarios con datos en memoria.",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/alumnos": {
+      "get": {
+        "tags": ["Alumnos"],
+        "summary": "Obtiene la lista completa de alumnos",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Lista de alumnos",
+            "schema": { "$ref": "#/definitions/Alumno" }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Alumnos"],
+        "summary": "Crea un nuevo alumno",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Datos del alumno a crear",
+            "required": true,
+            "schema": { "$ref": "#/definitions/AlumnoInput" }
+          }
+        ],
+        "responses": {
+          "201": { "description": "Alumno creado exitosamente" },
+          "400": { "description": "Datos inválidos" }
+        }
+      }
+    },
+    "/alumnos/{id}": {
+      "get": {
+        "tags": ["Alumnos"],
+        "summary": "Obtiene un alumno por su ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID numérico del alumno"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Alumno encontrado" },
+          "404": { "description": "Alumno no encontrado" }
+        }
+      },
+      "put": {
+        "tags": ["Alumnos"],
+        "summary": "Actualiza todos los datos de un alumno",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID numérico del alumno"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Nuevos datos del alumno",
+            "required": true,
+            "schema": { "$ref": "#/definitions/AlumnoInput" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Alumno actualizado" },
+          "404": { "description": "Alumno no encontrado" }
+        }
+      },
+      "delete": {
+        "tags": ["Alumnos"],
+        "summary": "Elimina un alumno por su ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID numérico del alumno"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Alumno eliminado" },
+          "404": { "description": "Alumno no encontrado" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Alumno": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "number", "example": 1 },
+        "nombre": { "type": "string", "example": "Ana García" },
+        "legajo": { "type": "string", "example": "ORT001" },
+        "carrera": { "type": "string", "example": "Ingeniería en Sistemas" },
+        "promedio": { "type": "number", "example": 8.5 }
+      }
+    },
+    "AlumnoInput": {
+      "type": "object",
+      "properties": {
+        "nombre": { "type": "string", "example": "Ana García" },
+        "legajo": { "type": "string", "example": "ORT001" },
+        "carrera": { "type": "string", "example": "Ingeniería en Sistemas" },
+        "promedio": { "type": "number", "example": 8.5 }
+      },
+      "required": ["nombre", "legajo", "carrera"]
+    }
+  }
+}
